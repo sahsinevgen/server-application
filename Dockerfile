@@ -1,4 +1,4 @@
-# syntax=docker/dockerfile:1
+
 FROM python:3.9-alpine
 
 COPY ./requirements.txt /app/requirements.txt
@@ -7,11 +7,10 @@ WORKDIR /app
 
 RUN pip3 install -r requirements.txt
 
-COPY app.py /app
+COPY ./src/*.py ./src/
 
-EXPOSE 5000
+WORKDIR /app/src
 
-ENTRYPOINT [ "python3" ]
+# EXPOSE 5000
 
-CMD [ "app.py" ]
-
+CMD [ "python3", "app.py" ]
